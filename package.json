@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ct2204/ecommerce.git"
+    "url": "https://github.com/Ct2204/MERN.git"
   },
   "author": "Le Cong Thuong",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Ct2204/ecommerce/issues"
+    "url": "https://github.com/Ct2204/MERN/issues"
   },
-  "homepage": "https://github.com/Ct2204/ecommerce#readme",
+  "homepage": "https://github.com/Ct2204/MERN#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",

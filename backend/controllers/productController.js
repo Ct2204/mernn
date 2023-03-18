@@ -19,9 +19,10 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
 
 
 //GET ALL PRODUCT
-exports.getAllProducts = catchAsyncErrors(async (req, res) => {
-    
-    const resultPerpage = 5;
+exports.getAllProducts = catchAsyncErrors(async (req, res,next) => {
+   
+
+    const resultPerpage = 8;
     const productCount = await Product.countDocuments();
     
     const apifeature = new ApiFeatures(Product.find(), req.query)
@@ -46,10 +47,6 @@ exports.getProductDetails = catchAsyncErrors( async (req, res, next) => {
 
     if (!product) {
         return next(new ErrorHander("Product not found",500))
-        // return res.status(500).json({
-        //     success: false,
-        //     message:"Product not found"
-        // })
     }
     
     res.status(200).json({

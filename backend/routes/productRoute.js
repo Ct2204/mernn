@@ -15,7 +15,7 @@ router.route('/admin/products/:id')
     .put(isAuthenticatedUser,authorizeRoles('admin'),updateProduct)
     .delete(isAuthenticatedUser,authorizeRoles('admin'),deleteProduct)
 
-router.route('/products/:id')
+router.route('/product/:id')
     .get(getProductDetails);
 
 router.route('/review')

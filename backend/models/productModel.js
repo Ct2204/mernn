@@ -19,16 +19,22 @@ const productSchema = mongoose.Schema({
         type: Number,
         default:0
     },
-    images:{
-        public_id: {
-            type: String,
-            required:true
-        },
-        url: {
-            type: String,
-            required:true
+    images:
+        [
+        {
+            public_id: {
+                type: String,
+               
+            }
+        ,
+    
+            url: {
+                type: String,
+              
+            }
         }
-    },
+        ]
+    ,
     category: {
         type: String,
         required: [true, 'Please enter product category'],

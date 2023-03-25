@@ -5,7 +5,7 @@ import {
     CLEAR_ERROR,
     PRODUCT_DETAILS_REQUEST,
     PRODUCT_DETAILS_SUCCESS,
-    PRODUCT_DETAILS_FAIL
+    PRODUCT_DETAILS_FAIL,
 } from '../constants/productConstants'
 
 
@@ -20,7 +20,8 @@ export const productReducer = (state = { products: [] },action) => {
                     return {
                         loading: false,
                         products: action.payload.products,
-                        productsCount:action.payload.productsCount,
+                        productsCount: action.payload.productsCount,
+                        resultPerPage: action.payload.resultPerPage,
                     }
                 case ALL_PRODUCT_FAIL:
                     return {

@@ -214,6 +214,25 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
         useFindAndModify:false
         
     })
+    const newUserData = {
+        name: req.body.name,
+        email: req.body.email,
+    }
+
+    //we will and cloudinary later
+    // const imageId = user.avatar.public_id
+    // await cloudinary.v2.uploader.destroy(imageId)
+
+    // const user = await User.findByIdAndUpdate(req.user.id, {
+    //     folder: 'avatars',
+    //     width: 150,
+    //     crop:'scale',
+        
+    // })
+    // newUserData.avatar = {
+    //     public_id: myCloud.public_id,
+    //     url:myCloud.secure_url,
+    // }
 
     res.status(200).json({
         success: true,

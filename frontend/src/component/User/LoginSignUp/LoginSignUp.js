@@ -84,7 +84,7 @@ const LoginSignUp = () => {
         if (isAuthenticated) {
             nevigate('/account')
         }
-    },[dispatch,error,alert,isAuthenticated])
+    },[dispatch,error,alert,isAuthenticated,nevigate])
 
 
 

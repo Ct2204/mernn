@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import Carousel from 'react-material-ui-carousel'
 import './ProductDetails.css'
 import {useSelector,useDispatch} from 'react-redux'
@@ -9,15 +9,35 @@ import ReviewCard from './ReviewCard.js'
 import Loader from "../layout/Loader/Loader.js";
 import {useAlert} from 'react-alert'
 import MetaData from '../layout/MetaData.js'
-
+import {addItemsToCart} from '../../actions/cartAction'
 
 const ProductDetails = () => {
 
+
+  const [quantity,setQuantity] =useState(1)
+
   const dispatch = useDispatch();
   const alert = useAlert()
-    const { id } = useParams();
-    const {product,loading,error} = useSelector((state) => state.productDetails);
+  const { id } = useParams();
+  const {product,loading,error} = useSelector((state) => state.productDetails);
   
+
+  const decreaseQuantity = () => {
+    if (1 >= quantity) return;
+    const qty = quantity -1
+    setQuantity(qty)
+  }
+  const increaseQuantity = () => {
+    if (product.Stock <= quantity) return;
+    const qty = quantity +1
+    setQuantity(qty)
+  }
+
+  const addToCartHandler = () => {
+    dispatch(addItemsToCart(id, quantity))
+    alert.success('Item added to Cart')
+  } 
+
   useEffect(() => {
     if (error) {
       alert.error(error)
@@ -73,15 +93,15 @@ const ProductDetails = () => {
             </div>
             <div className="detailsBlock-3-1">
               <div className="detailsBlock-3-1-1">
-                <button>-</button>
-                <input value='1' type="number" />
-                <button>+</button>
-              </div>{" "}
-              <button>Add to cart</button>
+                <button onClick={decreaseQuantity}>-</button>
+                <input  readOnly type="number" value={quantity}/>
+                <button onClick={increaseQuantity}>+</button>
+              </div>
+              <button onClick={addToCartHandler}>Add to cart</button>
             </div>
             <div className='status'>
             <p>
-              Status: {" "}
+              Status: 
               <b className={product.Stock < 1 ? 'redColor' : 'greenColor'}>
                 {product.Stock < 1 ? 'OutOfStock' : 'InStock'}
               </b>

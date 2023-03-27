@@ -7,8 +7,9 @@ import PersonIcon from '@material-ui/icons/Person'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import ListAltIcon from '@material-ui/icons/ListAlt'
 import Backdrop from '@material-ui/core/Backdrop'
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart.js'
 import { useNavigate } from 'react-router'
-import { useDispatch } from 'react-redux'
+import { useDispatch,useSelector } from 'react-redux'
 import { useAlert } from 'react-alert'
 import { logout } from '../../../actions/userAction.js'  
 
@@ -17,14 +18,21 @@ const UserOptions = ({user}) => {
   const nevigate = useNavigate()
   const dispatch = useDispatch()
   const alert = useAlert()
-
+  const {cartItems} = useSelector(state=>state.cart)
 
 
   const [open, setOpen] = useState(false)
   
   const options = [
-    {icon: < ListAltIcon />, name:'Orders', func:orders},
-    { icon:< PersonIcon />, name:'Profile', func:account},
+    { icon: < ListAltIcon />, name: 'Orders', func: orders },
+    { icon: < PersonIcon />, name: 'Profile', func: account },
+    {
+      icon: < ShoppingCartIcon
+        style={{color: cartItems.length > 0 ? "tomato" : "unset"
+    }
+}
+      />, name: `Cart(${cartItems.length})`, func: cart
+    },
    {icon: <ExitToAppIcon/>, name:'Logout', func:logoutUser},
     
   ]
@@ -46,10 +54,14 @@ const UserOptions = ({user}) => {
   function account() {
     nevigate('/account')
   }
+  function cart() {
+    nevigate('/cart')
+  }
   function logoutUser() {
     dispatch(logout())
     alert.success('Logout successfully')
   }
+
 
   return (
     <Fragment>

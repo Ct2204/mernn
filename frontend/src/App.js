@@ -18,6 +18,7 @@ import Profile from './component/User/Profile/Profile.js';
 import ProtectedRoute from './component/Route/ProtectedRoute.js';
 import UpdateProfile from './component/User/UpdateProfile/UpdateProfile.js';
 import UpdatePassword from './component/User/UpdatePassword/UpdatePassword.js';
+import Cart from './component/Product/Cart/Cart.js';
 function App() {
   
   const {isAuthenticated,user} = useSelector(state=>state.user)
@@ -48,7 +49,8 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route exact path='/account' element={<Profile />} />
           <Route exact path='/me/update' element={<UpdateProfile />} />
-          <Route exact path='/password/update' element={<UpdatePassword/>} />
+          <Route exact path='/password/update' element={<UpdatePassword />} />
+          <Route exact path='/cart' element = {<Cart/>}/>
         </Route>
       </Routes>
       <Footer />

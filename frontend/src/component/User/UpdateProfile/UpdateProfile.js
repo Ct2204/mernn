@@ -1,7 +1,7 @@
 import React, { Fragment,useState,useEffect } from 'react'
 import './UpdateProfile.css'
 import Loader from '../../layout/Loader/Loader.js'
-import { Link, useNavigate } from 'react-router-dom'
+import {  useNavigate } from 'react-router-dom'
 import MetaData from '../../layout/MetaData.js'
 
 import MailOutlineIcon from '@material-ui/icons/MailOutline'
@@ -71,7 +71,7 @@ const UpdateProfile = () => {
                 type:UPDATE_PROFILE_RESET,
             })
         }
-    },[dispatch,error,alert,isUpdated,user])
+    },[dispatch,error,alert,isUpdated,user,nevigate])
 
   return (
       <Fragment>

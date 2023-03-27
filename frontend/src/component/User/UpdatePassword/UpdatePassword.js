@@ -1,7 +1,7 @@
 import React, { Fragment,useState,useEffect } from 'react'
 import './UpdatePassword.css'
 import Loader from '../../layout/Loader/Loader.js'
-import { Link, useNavigate } from 'react-router-dom'
+import {useNavigate } from 'react-router-dom'
 import MetaData from '../../layout/MetaData.js'
 
 
@@ -57,7 +57,7 @@ const UpdatePassword = () => {
                 type:UPDATE_PASSWORD_RESET,
             })
         }
-    },[dispatch,error,alert,isUpdated])
+    },[dispatch,error,alert,isUpdated,nevigate])
 
   return (
     <Fragment>
@@ -107,7 +107,7 @@ const UpdatePassword = () => {
                 <input
                     type="submit"
                     value="Change"
-                    className='updateProfileBtn'
+                    className='updatePasswordBtn'
                 />
                     </form>
               </div>

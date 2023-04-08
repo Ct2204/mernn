@@ -5,8 +5,9 @@ import { AiOutlineMail } from 'react-icons/ai'
 import { HiOutlineLockOpen } from 'react-icons/hi'
 import { MdOutlineFaceUnlock } from 'react-icons/md'
 import profile from '../../../images/profile.png'
-import { Link,useNavigate } from 'react-router-dom'
-import {useAlert} from 'react-alert'
+import { Link,useNavigate,useLocation } from 'react-router-dom'
+import { useAlert } from 'react-alert'
+
 
 import {useDispatch,useSelector } from 'react-redux'
 import {clearErrors,login,register} from '../../../actions/userAction'
@@ -15,6 +16,7 @@ const LoginSignUp = () => {
     const dispatch = useDispatch()
     const alert = useAlert()
     const nevigate = useNavigate()
+    const location = useLocation()
 
     const {error,loading,isAuthenticated} = useSelector(state => state.user)
 
@@ -35,7 +37,7 @@ const LoginSignUp = () => {
     
     const [avatar, setAvatar] = useState()
     
-    const [avatarPreview,setAvatarPriview] = useState("/profile.png")
+    const [avatarPreview,setAvatarPriview] = useState(profile)
 
 
     const loginSubmit = (e) => { 
@@ -52,7 +54,7 @@ const LoginSignUp = () => {
         myForm.set('name', name)
         myForm.set('email',email)
         myForm.set('password', password)
-        myForm.set('avater', avatar)
+        myForm.set('avatar', avatar)
         dispatch(register(myForm))
     }
 
@@ -73,7 +75,7 @@ const LoginSignUp = () => {
         }
     }
 
-
+    const redirect = location.search ? location.search.split('=')[1] : '/account'
 
     useEffect(() => { 
         if (error) {
@@ -82,9 +84,9 @@ const LoginSignUp = () => {
         }
 
         if (isAuthenticated) {
-            nevigate('/account')
+            nevigate(`${redirect}`)
         }
-    },[dispatch,error,alert,isAuthenticated,nevigate])
+    },[dispatch,error,alert,isAuthenticated,nevigate,redirect])
 
 
 
@@ -198,7 +200,7 @@ const LoginSignUp = () => {
                               </div>
         
                               <div id="registerImage">
-                                  <img src={profile} alt="Avater preview" />
+                                  <img src={avatarPreview} alt="Avater preview" />
                                   <input
                                       type='file'
                                       name='avatar'

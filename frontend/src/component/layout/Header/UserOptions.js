@@ -46,7 +46,7 @@ const UserOptions = ({user}) => {
   }
 
   function dashboard() {
-    nevigate('/dashboard')
+    nevigate('/admin/dashboard')
   }
   function orders() {
     nevigate('/orders')

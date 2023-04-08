@@ -19,6 +19,12 @@ import ProtectedRoute from './component/Route/ProtectedRoute.js';
 import UpdateProfile from './component/User/UpdateProfile/UpdateProfile.js';
 import UpdatePassword from './component/User/UpdatePassword/UpdatePassword.js';
 import Cart from './component/Product/Cart/Cart.js';
+import Shipping from './component/Product/Cart/Shipping/Shipping.js'
+import ConfirmOrder from './component/Product/Cart/Shipping/ConfirmOrder.js';
+import MyOrder from './component/Order/MyOrder.js';
+import Dashboard from './component/Admin/Dashboard.js';
+import ProductList from './component/Admin/ProductList.js';
+import NewProduct from './component/Admin/NewProduct.js';
 function App() {
   
   const {isAuthenticated,user} = useSelector(state=>state.user)
@@ -50,7 +56,13 @@ function App() {
           <Route exact path='/account' element={<Profile />} />
           <Route exact path='/me/update' element={<UpdateProfile />} />
           <Route exact path='/password/update' element={<UpdatePassword />} />
-          <Route exact path='/cart' element = {<Cart/>}/>
+          <Route exact path='/cart' element={<Cart />} />
+          <Route exact path='/login/shipping' element={<Shipping />} />
+          <Route exact path='/order/confirm' element={<ConfirmOrder />} />
+          <Route exact path='/orders' element={<MyOrder />} />
+          <Route exact path='/admin/dashboard' element={<Dashboard />} />
+          <Route exact path='/admin/products' element={<ProductList />} />
+          <Route exact path='/admin/product' element={<NewProduct />} />
         </Route>
       </Routes>
       <Footer />

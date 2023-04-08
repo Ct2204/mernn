@@ -2,21 +2,45 @@ const Product = require('../models/productModel')
 const ErrorHander = require('../utils/errorhander.js')
 const catchAsyncErrors = require('../middleware/catchAsyncErors')
 const ApiFeatures = require('../utils/apifeatures.js')
+const cloudinary = require("cloudinary");
 
 
-// create product -- admin
+
+
+/// Create Product -- Admin
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
-
-    req.body.user = req.user.id
-
-    const product = await Product.create(req.body)
-
+    let images = [];
+  
+    if (typeof req.body.images === "string") {
+      images.push(req.body.images);
+    } else {
+      images = req.body.images;
+    }
+  
+    const imagesLinks = [];
+  
+    for (let i = 0; i < images.length; i++) {
+      const result = await cloudinary.v2.uploader.upload(images[i], {
+        folder: "products",
+      });
+  
+      imagesLinks.push({
+        public_id: result.public_id,
+        url: result.secure_url,
+      });
+    }
+  
+    req.body.images = imagesLinks;
+    req.body.user = req.user.id;
+  
+    const product = await Product.create(req.body);
+  
     res.status(201).json({
-        success: true,
-        product
-    })
-})
-
+      success: true,
+      product,
+    });
+  });
+  
 
 //GET ALL PRODUCT
 exports.getAllProducts = catchAsyncErrors(async (req, res,next) => {
@@ -38,6 +62,19 @@ exports.getAllProducts = catchAsyncErrors(async (req, res,next) => {
         products,
         productsCount,
         resultPerPage,
+    })
+})
+
+//GET ALL PRODUCT (ADMIN)
+exports.getAdminProducts = catchAsyncErrors(async (req, res,next) => {
+   
+    const products = await Product.find()
+   
+
+    res.status(200).json({
+        success: true,
+        products,
+       
     })
 })
 

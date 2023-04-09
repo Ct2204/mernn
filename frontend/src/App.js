@@ -25,6 +25,7 @@ import MyOrder from './component/Order/MyOrder.js';
 import Dashboard from './component/Admin/Dashboard.js';
 import ProductList from './component/Admin/ProductList.js';
 import NewProduct from './component/Admin/NewProduct.js';
+import UpdateProduct from './component/Admin/UpdateProduct.js';
 function App() {
   
   const {isAuthenticated,user} = useSelector(state=>state.user)
@@ -63,6 +64,7 @@ function App() {
           <Route exact path='/admin/dashboard' element={<Dashboard />} />
           <Route exact path='/admin/products' element={<ProductList />} />
           <Route exact path='/admin/product' element={<NewProduct />} />
+          <Route exact path='/admin/product/:id' element={<UpdateProduct/>} />
         </Route>
       </Routes>
       <Footer />

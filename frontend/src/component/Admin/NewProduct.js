@@ -36,11 +36,11 @@ const NewProduct = () => {
 
     const categories = [
         "Laptop",
-        "Footwear",
-        "Bottom",
-        "Tops",
-        "Camera",
         "SmartPhones",
+        "Bàn Phím",
+        "Chuột",
+        "Màn Hình",
+        "Case Máy Tính",
     ]
 
     useEffect(() => {

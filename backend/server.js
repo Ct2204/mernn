@@ -4,14 +4,7 @@ const dotenv = require('dotenv')
 
 const connectDatabase = require('./config/database')
 const cloudinary = require('cloudinary');
-// const { CloudinaryStorage } = require('multer-storage-cloudinary');
-// const multer = require('multer');
-// // Handling Uncaught Exception
-// process.on('uncaughtException', (err) => {
-//     console.log(`Error: ${err.message}`)
-//     console.log(`Shutting down the server due to Uncaught Exception`)
-//     process.exit(1)
-// })
+
 
 
 //config
@@ -28,15 +21,7 @@ cloudinary.config({
     api_secret:process.env.CLOUDINARY_SECRET,
 })
 
-// const storage = new CloudinaryStorage({
-//     cloudinary,
-//     allowedFormats: ['jpg', 'png'],
-//     filename: function (req, file, cb) {
-//       cb(null, file.originalname); 
-//     }
-//   });
-  
-//   const uploadCloud = multer({ storage });
+
 
 const server = app.listen(process.env.PORT, () => {
     console.log(`Server woking on http://localhost:${process.env.PORT}`)

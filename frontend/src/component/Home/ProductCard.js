@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ReactStars from 'react-rating-stars-component'
-
+import './productCard.css'
 
 
 function ProductCard({ product }) {
@@ -16,12 +16,12 @@ function ProductCard({ product }) {
     
     return (
         <Link className="productCard" to={`/product/${product._id}`}>
-        <img src={product.images[0].url} alt={product.name} />
-        <p>{ product.name}</p>
-        <div>
+        <img className="productCard-Img" src={product.images[0].url} alt={product.name} />
+        <p className="productCard-name">{ product.name}</p>
+        <div className="productCard-review">
                 <ReactStars {...options} /><span>({ product.numOfReviews} Review )</span>
         </div>
-        <span>{ `${product.price} VND`}</span>
+        <span className="productCard-price">{ `${product.price} VND`}</span>
         </Link>
       );
 }
